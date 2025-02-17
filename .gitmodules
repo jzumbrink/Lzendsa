@@ -1,0 +1,9 @@
+[submodule "external/word-packing"]
+	path = external/word-packing
+	url = https://github.com/pdinklag/word-packing
+[submodule "external/ordered"]
+	path = external/ordered
+	url = https://github.com/pdinklag/ordered
+[submodule "external/ips4o"]
+	path = external/ips4o
+	url = https://github.com/ips4o/ips4o
