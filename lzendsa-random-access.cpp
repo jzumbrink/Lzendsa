@@ -73,7 +73,6 @@ void random_access(std::ifstream &lzendsa_in, std::vector<IntWord> &arbitrary_in
         << " iterations=" << arbitrary_indices.size()
         << " file=" << filename
         << " interval_length=" << interval_length
-        << " d=" << lzendsa.d()
         << " h=" << h
         << " idx_size_bn=" << (double) lzendsa.memory_usage() / (double) lzendsa.get_n()
         << " time_ms=" << td_random_access

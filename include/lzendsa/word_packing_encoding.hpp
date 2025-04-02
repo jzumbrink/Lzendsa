@@ -436,6 +436,10 @@ public:
         return n;
     }
 
+    Index get_end_position(Index i) const {
+        return end_positions[i];
+    }
+
     size_t memory_usage() const {
         size_t base_size = sizeof(*this);
         size_t sources_size = sizeof(Pack) * word_packing::num_packs_required<Pack>(z, bits_per_source);

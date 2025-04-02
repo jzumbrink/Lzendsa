@@ -117,19 +117,17 @@ int main(int argc, char** argv) {
 
     auto td_complete_construction = timestamp() - timer_complete_construction;
 
-    int64_t z, d, memory_usage;
+    int64_t z, memory_usage;
 
     if (n <= INT32_MAX && !use64) {
         z = cdsa32.z();
-        d = cdsa32.d();
         memory_usage = cdsa32.memory_usage();
     } else {
         z = cdsa64.z();
-        d = cdsa64.d();
         memory_usage = cdsa64.memory_usage();
     }
 
-    std::cout << "lzendsa index successfully constructed (z=" << z << ", d=" << d << ")" << std::endl;
+    std::cout << "lzendsa index successfully constructed (z=" << z << ")" << std::endl;
 
     uint64_t out_bytes = sizeof(uint8_t);
 
@@ -157,7 +155,6 @@ int main(int argc, char** argv) {
         << " disk_size_bytes=" << out_bytes
         << " n=" << n
         << " z=" << z
-        << " d=" << d
         << " h=" << h
         << std::endl << std::flush;
 }
