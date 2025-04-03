@@ -43,7 +43,6 @@ void help() {
     std::cout << "\t<text file>     path to the input file (should contain text)" << std::endl;
     std::cout << "\t-o              path to the desired output file (the extension .lzendsa will be added automatically)" << std::endl;
     std::cout << "\t-h              longest phrase length, leave blank or put -1 for unbounded phrase length" << std::endl;
-    std::cout << "\t-d              delta, if not provided the sample will be about 10% of the index size" << std::endl;
     std::cout << "\t--f64           explicitly use 64-bit-integers regardless of the file size" << std::endl;
     std::cout << "\t(-filename      sets the filename only for the RESULT line)" << std::endl;
 }
@@ -54,7 +53,6 @@ int main(int argc, char** argv) {
     std::set<std::string> allowed_literal_options;
 
     allowed_value_options.insert("-o");
-    allowed_value_options.insert("-d");
     allowed_value_options.insert("-h");
     allowed_value_options.insert("-filename");
 
@@ -84,15 +82,11 @@ int main(int argc, char** argv) {
     }
 
     std::string o = parsed_args.last_parameter.at(0).append(".lzendsa");
-    int32_t delta = -1;
     int32_t h = -1;
     std::string filename = parsed_args.last_parameter.at(0);
     for (Option value_option : parsed_args.value_options) {
         if (value_option.name == "-o") {
             o = value_option.value.append(".lzendsa");
-        }
-        if (value_option.name == "-d") {
-            delta = std::stoi(value_option.value);
         }
 
         if (value_option.name == "-h") {
@@ -109,10 +103,10 @@ int main(int argc, char** argv) {
     Lzendsa<int64_t, lzend::WordPackingEncoding<int64_t>> cdsa64;
     if (n <= INT32_MAX && !use64) {
         std::cout << "Constructing using 32-bit integers..." << std::endl;
-        cdsa32.load(s, delta, h, parsed_args.last_parameter.at(0));
+        cdsa32.load(s, h, parsed_args.last_parameter.at(0));
     } else {
         std::cout << "Constructing using 64-bit integers..." << std::endl;
-        cdsa64.load(s, delta, h, parsed_args.last_parameter.at(0));
+        cdsa64.load(s, h, parsed_args.last_parameter.at(0));
     }
 
     auto td_complete_construction = timestamp() - timer_complete_construction;

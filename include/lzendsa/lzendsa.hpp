@@ -53,7 +53,7 @@ private:
 public:
 
     // call when the suffix array of the input text is not yet calculated
-    void load(std::string &s, int64_t d = -1, int64_t h = -1, std::string filename = "none") {
+    void load(std::string &s, int64_t h = -1, std::string filename = "none") {
         IntWord text_length = s.length();
 
         # ifdef INFOS
@@ -78,10 +78,10 @@ public:
         std::cout.flush();
         # endif
 
-        load(std::move(sa), text_length, d, h, filename);
+        load(std::move(sa), text_length, h, filename);
     }
 
-    void load(std::unique_ptr<IntWord[]> sa, IntWord sa_size, int64_t d = -1, int64_t h = -1, std::string filename = "none") {
+    void load(std::unique_ptr<IntWord[]> sa, IntWord sa_size, int64_t h = -1, std::string filename = "none") {
         n = sa_size;
 
         std::vector<lzend::IntPhrase<IntWord>> phrases;
