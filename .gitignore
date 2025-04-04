@@ -4,3 +4,4 @@ bin/*
 *.lzendri
 *.indices
 resources/*
+index-builds/*
